@@ -2,13 +2,13 @@
 <widget xmlns     = "http://www.w3.org/ns/widgets"
         xmlns:gap = "http://phonegap.com/ns/1.0"
         xmlns:android = "http://schemas.android.com/apk/res/android"
-        id        = "com.modonetwork.test"
+        id        = "com.modonetwork.demo"
         versionCode = "20170"
         version   = "1.0.0">
-    <name>Modo Network LMS</name>
+    <name>OVS Retail Academy</name>
 
     <description>
-        Modo Network LMS Mobile App
+        OVS Retail Academy
     </description>
 
     <author href="http://modonetwork.com" email="helpdesk@modonetwork.com">
