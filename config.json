@@ -1,5 +1,5 @@
 {
-    "app_id" : "com.modonetwork.test",
+    "app_id" : "com.modonetwork.retailacademy",
     "appname": "Modo Network LMS",
     "versioncode" : "2016",
     "versionname" : "3.2.0",
@@ -10,7 +10,7 @@
     "wsextservice" : "local_mobile",
     "gcmpn": "694767596569",
     "customurlscheme": "moodlemobile",
-    "siteurl": "http://test.modonetwork.com",
+    "siteurl": "http://retailacademy.modonetwork.com",
     "skipssoconfirmation": "false",
     "forcedefaultlanguage": "false"
 }
