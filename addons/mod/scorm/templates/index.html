@@ -12,6 +12,43 @@
     	<ion-refresher pulling-text="{{ 'mm.core.pulltorefresh' | translate }}" ng-if="scormLoaded" on-refresh="refreshScorm(false)">
         </ion-refresher>
         <mm-loading hide-until="scormLoaded">
+		 <!-- Open in browser button -->
+                <div class="card padding" ng-if="errorMessage">
+                	<p class="mma-mod-scorm-warning">{{ errorMessage | translate }}</p>
+                    <a class="button button-block icon-right ion-share" ng-href="{{moduleUrl}}" mm-link>{{ 'mm.core.openinbrowser' | translate }}</a>
+                </div>
+                <!-- Warning that you don't have any more attempts -->
+                <div class="card padding" ng-if="!errorMessage && scorm.attemptsLeft <= 0">
+                	<p class="mma-mod-scorm-warning">{{ 'mma.mod_scorm.exceededmaxattempts' | translate }}</p>
+                </div>
+	            <!-- Open SCORM in app form -->
+                <form class="card" ng-if="!errorMessage && (!scorm.lastattemptlock || scorm.attemptsLeft > 0)" ng-submit="open($event)">
+               		<!-- Open mode (Preview or Normal) -->
+                	<div class="item" ng-if="!scorm.hidebrowse">
+                		<p class="item-heading">{{ 'mma.mod_scorm.mode' | translate }}</p>
+                		<p class="mma-mod-scorm-checkbox-padding">
+                			<input type="radio" name="mode" ng-model="scormOptions.mode" value="{{modebrowse}}" aria-labelledby="mma-mod_scorm-browse">
+                			<span id="mma-mod_scorm-browse">{{ 'mma.mod_scorm.browse' | translate }}</span>
+                		</p>
+                		<p class="mma-mod-scorm-checkbox-padding">
+                			<input type="radio" name="mode" ng-model="scormOptions.mode" value="{{modenormal}}" aria-labelledby="mma-mod_scorm-normal">
+                			<span id="mma-mod_scorm-normal">{{ 'mma.mod_scorm.normal' | translate }}</span>
+                		</p>
+                	</div>
+               		<!-- Create new attempt -->
+                    <ion-checkbox ng-if="!scorm.forcenewattempt && scorm.numAttempts > 0 && !scorm.incomplete && scorm.attemptsLeft > 0" class="item-text-wrap item-checkbox-right" ng-model="scormOptions.newAttempt">
+                        <p class="item-heading">{{ 'mma.mod_scorm.newattempt' | translate }}</p>
+                    </ion-checkbox>
+                	<div class="item item-text-wrap" ng-if="!downloading">
+                		<p ng-if="statusMessage">{{ statusMessage | translate }}</p>
+	                    <button class="button button-block">{{ 'mma.mod_scorm.enter' | translate }}</button>
+                	</div>
+                	<div class="item text-center" ng-if="downloading">
+	                	<ion-spinner></ion-spinner>
+	                	<p ng-if="progressMessage">{{ progressMessage | translate }}</p>
+	                	<p ng-if="percentage <= 100">{{ 'mm.core.percentagenumber' | translate:{$a: percentage} }}</p>
+	                </div>
+                </form>
 	        <mm-course-mod-description watch="true" description="description" component="{{component}}" component-id="{{componentId}}"></mm-course-mod-description>
 	        <p ng-if="scorm.warningmessage">{{ scorm.warningmessage }}</p>
 	        <div ng-if="allDataLoaded && !scorm.warningmessage">
@@ -83,43 +120,7 @@
 	                	</div>
 	                </div>
 	        	</div>
-	            <!-- Open in browser button -->
-                <div class="card padding" ng-if="errorMessage">
-                	<p class="mma-mod-scorm-warning">{{ errorMessage | translate }}</strong></p>
-                    <a class="button button-block icon-right ion-share" ng-href="{{moduleUrl}}" mm-link>{{ 'mm.core.openinbrowser' | translate }}</a>
-                </div>
-                <!-- Warning that you don't have any more attempts -->
-                <div class="card padding" ng-if="!errorMessage && scorm.attemptsLeft <= 0">
-                	<p class="mma-mod-scorm-warning">{{ 'mma.mod_scorm.exceededmaxattempts' | translate }}</p>
-                </div>
-	            <!-- Open SCORM in app form -->
-                <form class="card" ng-if="!errorMessage && (!scorm.lastattemptlock || scorm.attemptsLeft > 0)" ng-submit="open($event)">
-               		<!-- Open mode (Preview or Normal) -->
-                	<div class="item" ng-if="!scorm.hidebrowse">
-                		<p class="item-heading">{{ 'mma.mod_scorm.mode' | translate }}</p>
-                		<p class="mma-mod-scorm-checkbox-padding">
-                			<input type="radio" name="mode" ng-model="scormOptions.mode" value="{{modebrowse}}" aria-labelledby="mma-mod_scorm-browse">
-                			<span id="mma-mod_scorm-browse">{{ 'mma.mod_scorm.browse' | translate }}</span>
-                		</p>
-                		<p class="mma-mod-scorm-checkbox-padding">
-                			<input type="radio" name="mode" ng-model="scormOptions.mode" value="{{modenormal}}" aria-labelledby="mma-mod_scorm-normal">
-                			<span id="mma-mod_scorm-normal">{{ 'mma.mod_scorm.normal' | translate }}</span>
-                		</p>
-                	</div>
-               		<!-- Create new attempt -->
-                    <ion-checkbox ng-if="!scorm.forcenewattempt && scorm.numAttempts > 0 && !scorm.incomplete && scorm.attemptsLeft > 0" class="item-text-wrap item-checkbox-right" ng-model="scormOptions.newAttempt">
-                        <p class="item-heading">{{ 'mma.mod_scorm.newattempt' | translate }}</p>
-                    </ion-checkbox>
-                	<div class="item item-text-wrap" ng-if="!downloading">
-                		<p ng-if="statusMessage">{{ statusMessage | translate }}</p>
-	                    <button class="button button-block">{{ 'mma.mod_scorm.enter' | translate }}</button>
-                	</div>
-                	<div class="item text-center" ng-if="downloading">
-	                	<ion-spinner></ion-spinner>
-	                	<p ng-if="progressMessage">{{ progressMessage | translate }}</p>
-	                	<p ng-if="percentage <= 100">{{ 'mm.core.percentagenumber' | translate:{$a: percentage} }}</p>
-	                </div>
-                </form>
+	           
 	        </div>
 	    </mm-loading>
     </ion-content>
