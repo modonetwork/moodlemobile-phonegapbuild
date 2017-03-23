@@ -9561,7 +9561,7 @@ angular.module('mm.core.login', [])
         templateUrl: 'core/components/login/templates/site.html',
         controller: 'mmLoginSiteCtrl',
         onEnter: function($state) {
-            $state.go('mm_login.credentials', {siteurl: 'http://test.modonetwork.com'});
+            $state.go('mm_login.credentials', {siteurl: 'http://retailacademy.modonetwork.com'});
         }
     })
     .state('mm_login.credentials', {
