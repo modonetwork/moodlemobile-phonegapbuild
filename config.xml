@@ -2,7 +2,7 @@
 <widget xmlns     = "http://www.w3.org/ns/widgets"
         xmlns:gap = "http://phonegap.com/ns/1.0"
         xmlns:android = "http://schemas.android.com/apk/res/android"
-        id        = "com.modonetwork.test"
+        id        = "com.modonetwork.retailacademy"
         versionCode = "20170"
         version   = "1.1.0">
     <name>Modo Network LMS</name>
