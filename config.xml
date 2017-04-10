@@ -3,8 +3,8 @@
         xmlns:gap = "http://phonegap.com/ns/1.0"
         xmlns:android = "http://schemas.android.com/apk/res/android"
         id        = "com.modonetwork.retailacademy"
-        versionCode = "20173"
-        version   = "1.1.1">
+        versionCode = "20174"
+        version   = "1.1.2">
     <name>Modo Network LMS</name>
 
     <description>
@@ -16,7 +16,7 @@
     </author>
 
     <gap:config-file platform="ios" parent="CFBundleShortVersionString">
-        <string>1.1.1</string>
+        <string>1.1.2</string>
     </gap:config-file>
 
     <gap:platform name="ios" />
